@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import twitterLogo from "./assets/twitter-logo.svg";
+import CandyMachine from "./CandyMachine";
 
 // Constants
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
+
+  const [walletAddress, setWalletAddress] = useState(null)
 
   const checkWalletIsConnected = async () => {
     try {
@@ -15,7 +18,7 @@ const App = () => {
         if (solana.isPhantom) {
            console.log('Phantom connected');
            const response = await solana.connect({onlyIftrusted: true})
-           console.log('Connected with Public key: ', response.publicKey.toString());
+           setWalletAddress(response.publicKey.toString());
         } else {
           alert('Phantom Wallet not connected')
         }
@@ -27,7 +30,12 @@ const App = () => {
   }
 
   const connectWallet = async() => {
-    console.log('connect wallet fun');
+     const {solana} = window
+      if (solana) {
+      const response = await solana.connect()
+        setWalletAddress(response.publicKey.toString());
+        console.log('connectWallet()', walletAddress);
+      }
   }
 
   const renderNotConnectedContainer = () => (
@@ -42,7 +50,7 @@ const App = () => {
     return () => window.removeEventListener('load', onLoad)
   }, [])
   
-
+  console.log('walletAddress-window.solana', window.solana);
 
 	return (
 		<div className="App">
@@ -50,7 +58,8 @@ const App = () => {
 				<div className="header-container">
 					<p className="header">🍭 Candy Drop</p>
 					<p className="sub-text">NFT drop machine with fair mint</p>
-          {renderNotConnectedContainer()}
+          {!walletAddress && renderNotConnectedContainer()}
+          {walletAddress && <CandyMachine walletAddress={window.solana}/>}
 				</div>
 				<div className="footer-container">
 					<img

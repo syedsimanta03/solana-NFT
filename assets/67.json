@@ -1,0 +1,50 @@
+{
+  "name": "Skulla #67",
+  "symbol": "skull",
+  "description": "Skulla is Skull NFT which is rare and awesome. Built on Solana chain.",
+  "seller_fee_basis_points": 100,
+  "image": "67.png",
+  "external_url": "https://skullamint.netlify.app",
+  "edition": 67,
+  "attributes": [
+    {
+      "trait_type": "bg",
+      "value": "orange"
+    },
+    {
+      "trait_type": "skull",
+      "value": "skull"
+    },
+    {
+      "trait_type": "goggles",
+      "value": "goggles"
+    },
+    {
+      "trait_type": "cigar",
+      "value": "cigar"
+    },
+    {
+      "trait_type": "caps",
+      "value": "cap"
+    },
+    {
+      "trait_type": "maustach",
+      "value": "maustach"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "67.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "5bAZRoVE6tq8no59zJy6JhUf1TSLa7EYUSi3Vrw5u6a6",
+        "share": 100
+      }
+    ]
+  }
+}
