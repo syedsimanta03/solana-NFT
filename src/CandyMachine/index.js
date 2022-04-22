@@ -3,6 +3,7 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { sendTransactions } from './connection';
+
 import './CandyMachine.css';
 import {
   candyMachineProgram,
@@ -38,7 +39,6 @@ const CandyMachine = ({ walletAddress }) => {
       console.log('itemsRedeemed', itemsRedeemed);
       const itemsRemaining = itemsAvailable - itemsRedeemed
       const goLiveDate = candyMachine.data.goLiveDate.toNumber()
-      console.log('goLiveDate', goLiveDate);
       const preSale = candyMachine.data.whitelistMintSettings && candyMachine.data.whitelistMintSettings.preSale && (!candyMachine.data.goLiveDate || candyMachine.data.goLiveDate.toNumber() > new Date().getTime()/1000)
       const goLiveDateTimeString = `${new Date(goLiveDate * 1000).toGMTString()}`
       setCandyMachine({
@@ -51,14 +51,21 @@ const CandyMachine = ({ walletAddress }) => {
           ispreSale: preSale,
           goLiveDateTimeString,
           isSoldOut: itemsRemaining === 0,
-          isActive: (preSale || candyMachine.data.goLiveDate || candyMachine.data.goLiveDate.toNumber() < new Date().getTime()/1000) && (candyMachine.endSettings? candyMachine.endSettings.endSettingType.date? candyMachine.endSettings.number.toNumber() > new Date().getTime()/1000 : itemsRedeemed < candyMachine.endSettings.number.toNumber(): true ),
-          treasury: candyMachine.wallet,
+          isActive:
+        candyMachine.data.goLiveDate &&
+        candyMachine.data.goLiveDate.toNumber() < new Date().getTime() / 1000 &&
+        (candyMachine.endSettings
+          ? candyMachine.endSettings.endSettingType.date
+            ? candyMachine.endSettings.number.toNumber() > new Date().getTime() / 1000
+            : itemsRedeemed < candyMachine.endSettings.number.toNumber()
+          : true),
+          treasury: candyMachine.wallet.toString(),
           tokenMint: candyMachine.tokenMint,
           gatekeeper: candyMachine.data.gatekeeper,
           endSettings: candyMachine.data.endSettings,
           whitelistMintSettings: candyMachine.data.whitelistMintSettings,
           hiddenSettings: candyMachine.data.hiddenSettings,
-          price: candyMachine.data.price.toNumber()
+          price: candyMachine.data.price.toNumber()/10000000000
         }
       })
     }
@@ -351,10 +358,12 @@ const CandyMachine = ({ walletAddress }) => {
     return [];
   };
 
+
+
   return (
-  candyMachine && ( <div className="machine-container">
-      <p>Drop Date: {candyMachine.state.goLiveDateTimeString}</p>
-      <p>Items Minted:{candyMachine.state.itemsRedeemed}/{candyMachine.state.itemsAvailable}</p>
+  candyMachine && ( <div>
+      {/* <p>Drop Date: {candyMachine.state.goLiveDateTimeString}</p>
+      <p>Items Minted:{candyMachine.state.itemsRedeemed}/{candyMachine.state.itemsAvailable}</p> */}
       <button className="cta-button mint-button" onClick={mintToken}>
         Mint NFT
       </button>
