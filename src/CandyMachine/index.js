@@ -65,7 +65,7 @@ const CandyMachine = ({ walletAddress }) => {
           endSettings: candyMachine.data.endSettings,
           whitelistMintSettings: candyMachine.data.whitelistMintSettings,
           hiddenSettings: candyMachine.data.hiddenSettings,
-          price: candyMachine.data.price.toNumber()/10000000000
+          price: candyMachine.data.price.toLocaleString()
         }
       })
     }

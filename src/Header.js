@@ -1,7 +1,13 @@
-import MintButton from "./MintButton";
 
+import  React from 'react';
 
 const Header = () => {
+
+  const [mobile, setMobile] = React.useState(false)
+
+   const handleClick = () => {
+    setMobile(mobile => !mobile);
+  };
 
   return (
     <div className="fixed z-[100] flex w-full flex-col bg-gray-800/40 p-6 backdrop-blur-xl rgb">
@@ -23,33 +29,22 @@ const Header = () => {
         </div>
       </a>
       <div className="ml-10 hidden xl:flex">
-        <div className="space-x-6">
+        <div className="space-x-12">
           <a
-            className="text-gray-300 transition duration-300 hover:text-white"
+            className="text-gray-300 transition duration-300 hover:text-white link"
             href="/#gallery"
           >
             Gallery
           </a>
+
           <a
-            className="text-gray-300 transition duration-300 hover:text-white"
-            href="/#features"
-          >
-            Features
-          </a>
-          <a
-            className="text-gray-300 transition duration-300 hover:text-white"
+            className="text-gray-300 transition duration-300 hover:text-white link"
             href="/#roadmap"
           >
             Roadmap
           </a>
           <a
-            className="text-gray-300 transition duration-300 hover:text-white"
-            href="/#team"
-          >
-            Team
-          </a>
-          <a
-            className="text-gray-300 transition duration-300 hover:text-white"
+            className="text-gray-300 transition duration-300 hover:text-white link"
             href="/#faq"
           >
             FAQ
@@ -110,7 +105,7 @@ const Header = () => {
       </a>
     </div>
     <div className="inline-flex md:hidden">
-      <div className="cursor-pointer rounded-full bg-indigo-500 p-2 shadow-lg shadow-white/10 transition-colors hover:bg-indigo-600">
+      <div onClick={handleClick } className="cursor-pointer rounded-full bg-indigo-500 p-2 shadow-lg shadow-white/10 transition-colors hover:bg-indigo-600">
         <svg
           stroke="currentColor"
           fill="currentColor"
@@ -125,35 +120,25 @@ const Header = () => {
       </div>
     </div>
   </div>
-  <div className="hidden">
+  <div className={`${mobile ? '' : 'hidden'} md:hidden menu-drop`}>
     <div className="relative z-50 flex w-full flex-col space-y-4 bg-transparent px-6 pb-2 pt-8">
       <h4 className="mb-2 text-lg">Useful Links:</h4>
       <a
-        className="text-gray-300 transition duration-300 hover:text-white"
+        className="text-gray-300 transition duration-300 hover:text-white link"
         href="/#gallery"
       >
         Gallery
       </a>
+
       <a
-        className="text-gray-300 transition duration-300 hover:text-white"
-        href="/#features"
-      >
-        Features
-      </a>
-      <a
-        className="text-gray-300 transition duration-300 hover:text-white"
+        className="text-gray-300 transition duration-300 hover:text-white link"
         href="/#roadmap"
       >
         Roadmap
       </a>
+
       <a
-        className="text-gray-300 transition duration-300 hover:text-white"
-        href="/#team"
-      >
-        Team
-      </a>
-      <a
-        className="text-gray-300 transition duration-300 hover:text-white"
+        className="text-gray-300 transition duration-300 hover:text-white link"
         href="/#faq"
       >
         FAQ
@@ -203,9 +188,9 @@ const Header = () => {
           </div>
         </a>
       </div>
-      <a href="/#">
-        <div className="w-fit rounded-2xl bg-gradient-to-r from-indigo-500 via-teal-600 to-indigo-500 bg-size-200 bg-pos-0 px-4 py-2 font-semibold shadow-lg shadow-white/10 transition-all duration-300 hover:bg-pos-100">
-          Connect Wallet
+      <a href="https://solscan.io/account/7xTqBN7KQ2rhmRADn68MVyAM7WYVLwzkT7CHMHAtTLdN?cluster=devnet">
+        <div className="w-fit rounded-2xl glass bg-size-200 bg-pos-0 px-4 py-2 font-semibold shadow-lg shadow-white/10 transition-all duration-300 hover:bg-pos-100">
+         View on Solscan
         </div>
       </a>
     </div>

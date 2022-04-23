@@ -38,8 +38,8 @@ const Hero = () => {
   </div>
   <div className="ml-10 flex justify-center">
     <div className="relative -skew-y-3 mt-24 z-10 skew-x-6">
-      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem]">
-        <div className="relative h-[11rem] w-full xl:h-[18rem]">
+      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
+        <div className="relative h-[11rem] w-full xl:h-[18rem] cursor-pointer">
           <span
             style={{
               boxSizing: "border-box",
@@ -111,7 +111,7 @@ const Hero = () => {
               >
                 <img
                   alt="My Profile 1"
-                  src='/images/1.png'                 
+                  src='/images/0.png'                 
                   decoding="async"
                   data-nimg="fill"
                   className="heroUser"
@@ -144,15 +144,15 @@ const Hero = () => {
               </p>
             </div>
           </div>
-          <a target="_blank" href="#">
+          <span>
             🌟
-          </a>
+          </span>
         </div>
       </div>
     </div>
     <div className="relative skew-y-3 -translate-x-20 animate-pulse -skew-x-6">
-      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem]">
-        <div className="relative h-[11rem] w-full xl:h-[18rem]">
+      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
+        <div className="relative h-[11rem] w-full xl:h-[18rem] cursor-pointer hover:rotate[20px] hover:scale-3">
           <span
             style={{
               boxSizing: "border-box",
@@ -260,9 +260,9 @@ const Hero = () => {
               </p>
             </div>
           </div>
-          <a target="_blank" href="#">
+          <span>
             🌟
-          </a>
+          </span>
         </div>
       </div>
     </div>
