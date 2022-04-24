@@ -13,6 +13,9 @@ const MintButton = () => {
            const response = await solana.connect({onlyIftrusted: true})
            setWalletAddress(response.publicKey.toString());
            console.log('checkWalletIsConnected()', 'connected');
+              setTimeout(function () {
+        location.reload()
+    }, 3000);
         } else {
           alert('Phantom Wallet not connected')
         }
@@ -28,7 +31,9 @@ const MintButton = () => {
       if (solana) {
       const response = await solana.connect()
         setWalletAddress(response.publicKey.toString());
-        window.location.reload(true)
+           setTimeout(function () {
+        location.reload()
+    }, 3000);
         console.log('connectWallet()', walletAddress);
       }
   }
