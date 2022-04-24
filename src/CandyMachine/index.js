@@ -47,7 +47,6 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
       const goLiveDate = candyMachine.data.goLiveDate.toNumber()
       const preSale = candyMachine.data.whitelistMintSettings && candyMachine.data.whitelistMintSettings.preSale && (!candyMachine.data.goLiveDate || candyMachine.data.goLiveDate.toNumber() > new Date().getTime()/1000)
       const goLiveDateTimeString = `${new Date(goLiveDate * 1000).toGMTString()}`
-      reloadWindow()
       setCandyMachine({
         id: process.env.REACT_APP_CANDY_MACHINE_ID,
         program,
@@ -80,8 +79,6 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
 
     const reloadWindow = () => {
         const itemsRedeemed = localStorage.getItem('minted')
-        console.log(minted);
-        console.log(itemsRedeemed < minted);
         const redeemed = parseInt(itemsRedeemed)
         const NFTminted = parseInt(minted)
         if (redeemed < NFTminted) {
@@ -90,7 +87,6 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
     }, 3000);
         }
     }
-reloadWindow()
 
     useEffect(() => {
       getCandyMachineState()
@@ -391,7 +387,7 @@ reloadWindow()
    <div>
       {/* <p>Drop Date: {candyMachine.state.goLiveDateTimeString}</p>
       <p>Items Minted:{candyMachine.state.itemsRedeemed}/{candyMachine.state.itemsAvailable}</p> */}
-      <button className="cta-button mint-button" onClick={mintToken}>
+      <button className="cta-button mint-button transition-all duration-300 hover:-translate-y-[1px]" onClick={mintToken}>
         Mint NFT
       </button>
     </div>)

@@ -42,8 +42,8 @@ const Hero = () => {
 
   <div className="ml-10 flex justify-center">
     <div className="relative -skew-y-3 mt-24 z-10 skew-x-6">
-      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
-        <div className="relative h-[11rem] w-full xl:h-[18rem] cursor-pointer">
+      <div className="h-[15rem] w-[11rem] rounded-2xl transition-all duration-300 cursor-pointer bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
+        <div className="relative h-[11rem] w-full xl:h-[18rem]">
           <span
             style={{
               boxSizing: "border-box",
@@ -155,8 +155,8 @@ const Hero = () => {
       </div>
     </div>
     <div className="relative skew-y-3 -translate-x-20 animate-pulse -skew-x-6">
-      <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
-        <div className="relative h-[11rem] w-full xl:h-[18rem] cursor-pointer hover:rotate[20px] hover:scale-3">
+      <div className="h-[15rem] w-[11rem] rounded-2xl transition-all duration-300 cursor-pointer bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
+        <div className="relative h-[11rem] w-full xl:h-[18rem] hover:rotate[20px] hover:scale-3">
           <span
             style={{
               boxSizing: "border-box",
