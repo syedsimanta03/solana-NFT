@@ -47,6 +47,7 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
       const goLiveDate = candyMachine.data.goLiveDate.toNumber()
       const preSale = candyMachine.data.whitelistMintSettings && candyMachine.data.whitelistMintSettings.preSale && (!candyMachine.data.goLiveDate || candyMachine.data.goLiveDate.toNumber() > new Date().getTime()/1000)
       const goLiveDateTimeString = `${new Date(goLiveDate * 1000).toGMTString()}`
+      reloadWindow()
       setCandyMachine({
         id: process.env.REACT_APP_CANDY_MACHINE_ID,
         program,
@@ -79,8 +80,11 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
 
     const reloadWindow = () => {
         const itemsRedeemed = localStorage.getItem('minted')
-        if ( itemsRedeemed < minted) {
-          window.location.reload(true)
+        if (itemsRedeemed < minted) {
+        console.log(itemsRedeemed < minted);
+              setTimeout(function () {
+        window.location.reload(true);
+    }, 3000);
         }
     }
 
