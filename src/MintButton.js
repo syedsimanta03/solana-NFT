@@ -27,7 +27,7 @@ const MintButton = () => {
       if (solana) {
       const response = await solana.connect()
         setWalletAddress(response.publicKey.toString());
-        location.reload()
+        window.location.reload(true)
         console.log('connectWallet()', walletAddress);
       }
   }
