@@ -369,7 +369,7 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
     }
     setTimeout(function () {
         location.reload()
-    }, 1000);
+    }, 10000);
     return [];
   };
 
