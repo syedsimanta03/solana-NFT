@@ -30,7 +30,7 @@ const CandyMachine = ({ walletAddress }) => {
   const [candyMachine, setCandyMachine] = useState(null)
   const [minted, setMinted] = useLocalStorage("minted", "");
 const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
-console.log(minted);
+
         const getCandyMachineState = async() => {
       const provider = getProvider()
       const idl = await Program.fetchIdl(candyMachineProgram, provider)
@@ -367,6 +367,9 @@ console.log(minted);
     } catch (e) {
       console.log(e);
     }
+    setTimeout(function () {
+        location.reload()
+    }, 1000);
     return [];
   };
 
