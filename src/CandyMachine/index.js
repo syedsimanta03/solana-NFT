@@ -77,12 +77,18 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
       
     }
 
-    const itemsRedeemed = localStorage.getItem('minted')
-    const mintedNFT = itemsRedeemed < minted
-  
+    const reloadWindow = () => {
+        const itemsRedeemed = localStorage.getItem('minted')
+        if ( itemsRedeemed < minted) {
+          window.location.reload(true)
+        }
+    }
+
+
     useEffect(() => {
       getCandyMachineState()
-    }, [mintedNFT])
+      reloadWindow()
+    }, [minted])
 
     const getProvider = () => {
       const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST
@@ -367,9 +373,7 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
     } catch (e) {
       console.log(e);
     }
-    setTimeout(function () {
-        location.reload()
-    }, 10000);
+        
     return [];
   };
 
