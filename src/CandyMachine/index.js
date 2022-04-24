@@ -80,14 +80,17 @@ const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
 
     const reloadWindow = () => {
         const itemsRedeemed = localStorage.getItem('minted')
-        if (itemsRedeemed < minted) {
+        console.log(minted);
         console.log(itemsRedeemed < minted);
+        const redeemed = parseInt(itemsRedeemed)
+        const NFTminted = parseInt(minted)
+        if (redeemed < NFTminted) {
               setTimeout(function () {
         window.location.reload(true);
     }, 3000);
         }
     }
-
+reloadWindow()
 
     useEffect(() => {
       getCandyMachineState()
