@@ -12,7 +12,6 @@ const MintButton = () => {
         if (solana.isPhantom) {
            const response = await solana.connect({onlyIftrusted: true})
            setWalletAddress(response.publicKey.toString());
-           location.reload()
         } else {
           alert('Phantom Wallet not connected')
         }
