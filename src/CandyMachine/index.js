@@ -3,8 +3,11 @@ import { Connection, PublicKey } from '@solana/web3.js';
 import { Program, Provider, web3 } from '@project-serum/anchor';
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { sendTransactions } from './connection';
-
 import './CandyMachine.css';
+import { useLocalStorage } from './../useLocalStorage';
+
+
+
 import {
   candyMachineProgram,
   TOKEN_METADATA_PROGRAM_ID,
@@ -15,6 +18,8 @@ import {
   CIVIC
 } from './helpers';
 
+
+
 const { SystemProgram } = web3;
 const opts = {
   preflightCommitment: 'processed',
@@ -23,8 +28,9 @@ const opts = {
 const CandyMachine = ({ walletAddress }) => {
 
   const [candyMachine, setCandyMachine] = useState(null)
-
-    useEffect(() => {
+  const [minted, setMinted] = useLocalStorage("minted", "");
+const [maxitems, setMaxitems] = useLocalStorage("maxitems", "");
+console.log(minted);
         const getCandyMachineState = async() => {
       const provider = getProvider()
       const idl = await Program.fetchIdl(candyMachineProgram, provider)
@@ -32,11 +38,11 @@ const CandyMachine = ({ walletAddress }) => {
       const candyMachine = await program.account.candyMachine.fetch(
         process.env.REACT_APP_CANDY_MACHINE_ID
       )
-      console.log('index.js-getCandyMachineState', candyMachine);
+
       const itemsAvailable = candyMachine.data.itemsAvailable.toNumber()
-      console.log('itemsAvailable', itemsAvailable);
+      setMaxitems(itemsAvailable)
       const itemsRedeemed = candyMachine.itemsRedeemed.toNumber()
-      console.log('itemsRedeemed', itemsRedeemed);
+      setMinted(itemsRedeemed);
       const itemsRemaining = itemsAvailable - itemsRedeemed
       const goLiveDate = candyMachine.data.goLiveDate.toNumber()
       const preSale = candyMachine.data.whitelistMintSettings && candyMachine.data.whitelistMintSettings.preSale && (!candyMachine.data.goLiveDate || candyMachine.data.goLiveDate.toNumber() > new Date().getTime()/1000)
@@ -68,9 +74,15 @@ const CandyMachine = ({ walletAddress }) => {
           price: candyMachine.data.price.toLocaleString()
         }
       })
+      
     }
+
+    const itemsRedeemed = localStorage.getItem('minted')
+    const mintedNFT = itemsRedeemed < minted
+  
+    useEffect(() => {
       getCandyMachineState()
-    }, [])
+    }, [mintedNFT])
 
     const getProvider = () => {
       const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST
@@ -361,7 +373,8 @@ const CandyMachine = ({ walletAddress }) => {
 
 
   return (
-  candyMachine && ( <div>
+  candyMachine && (
+   <div>
       {/* <p>Drop Date: {candyMachine.state.goLiveDateTimeString}</p>
       <p>Items Minted:{candyMachine.state.itemsRedeemed}/{candyMachine.state.itemsAvailable}</p> */}
       <button className="cta-button mint-button" onClick={mintToken}>

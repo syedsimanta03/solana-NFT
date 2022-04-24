@@ -1,11 +1,13 @@
 import React from 'react'
 import MintButton from './MintButton';
+import Count from './Count';
 
 
 const Hero = () => {
-  
+
 
   return (
+    <>
     <div className="relative z-20 mx-auto grid grid-cols-1 gap-x-4 gap-y-20 py-48 lg:grid-cols-2 bg">
   <div className="container px-12 flex flex-col items-center justify-center text-center lg:items-start lg:text-left">
     <h1 className="mb-4 text-6xl font-bold xl:text-7xl">Skulla Metaverse</h1>
@@ -35,7 +37,9 @@ const Hero = () => {
       </a>
       <MintButton/>
     </div>
+     <Count/>
   </div>
+
   <div className="ml-10 flex justify-center">
     <div className="relative -skew-y-3 mt-24 z-10 skew-x-6">
       <div className="h-[15rem] w-[11rem] rounded-2xl bg-gray-900 shadow-xl shadow-indigo-500/30 xl:h-[23rem] xl:w-[18rem] hover:scale-90">
@@ -268,7 +272,8 @@ const Hero = () => {
     </div>
   </div>
 </div>
-
+ 
+  </>
   )
 }
 
