@@ -14,8 +14,10 @@ const MintButton = () => {
            setWalletAddress(response.publicKey.toString());
            console.log('checkWalletIsConnected()', 'connected');
     if (!localStorage.justOnce) {
+     setTimeout(function () {
         localStorage.setItem("justOnce", "true");
         window.location.reload(true);
+    }, 3000);
     }
         } else {
           alert('Phantom Wallet not connected')
