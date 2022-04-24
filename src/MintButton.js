@@ -14,9 +14,9 @@ const MintButton = () => {
            setWalletAddress(response.publicKey.toString());
            console.log('checkWalletIsConnected()', 'connected');
     window.onload = function () {
-    if (! localStorage.justOnce) {
+    if (!localStorage.justOnce) {
         localStorage.setItem("justOnce", "true");
-        window.location.reload();
+        window.location.reload(true);
     }
     }
         } else {
@@ -35,7 +35,7 @@ const MintButton = () => {
       const response = await solana.connect()
         setWalletAddress(response.publicKey.toString());
            setTimeout(function () {
-        location.reload()
+        window.location.reload(true);
     }, 3000);
         console.log('connectWallet()', walletAddress);
       }
